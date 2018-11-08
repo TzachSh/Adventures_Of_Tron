@@ -1,0 +1,320 @@
+# xinu makefile
+
+# for Turbo C
+COMPILER=rem TC -c -w-pia -w-par -DTURBOC
+SWITCHES=
+
+ASSEMBLER=TASM
+
+.c.obj:
+	$(COMPILER) $* $(SWITCHES)
+     
+.asm.obj:
+	$(ASSEMBLER) $*;
+
+butler.obj: butler.c butler.h conf.h kernel.h
+
+cbrkint.obj: butler.h cbrkint.c conf.h kernel.h
+
+chprio.obj: chprio.c conf.h kernel.h proc.h
+
+clkinit.obj: clkinit.c conf.h kernel.h q.h sleep.h
+
+clkint.obj: clkint.c conf.h io.h kernel.h sleep.h
+
+close.obj: close.c conf.h io.h kernel.h
+
+conf.obj: bios.h conf.c conf.h
+
+control.obj: conf.h control.c io.h kernel.h
+
+create.obj: conf.h create.c kernel.h mem.h proc.h
+
+ctxsw.obj: ctxsw.asm
+
+dfalloc.obj: conf.h dfalloc.c disk.h file.h kernel.h
+
+dfckmd.obj: conf.h dfckmd.c disk.h file.h kernel.h
+
+dfdsrch.obj: conf.h dfdsrch.c disk.h file.h kernel.h
+
+dio.obj: dio.c dskio.h kernel.h
+
+doprnt.obj: doprnt.c
+
+doscall.obj: conf.h dos.h doscall.c kernel.h
+
+dscntl.obj: conf.h disk.h dscntl.c kernel.h proc.h
+
+dsinit.obj: bufpool.h conf.h disk.h dsinit.c dskio.h kernel.h mark.h
+
+dsinter.obj: conf.h disk.h dsinter.c dskio.h kernel.h
+
+dskbcpy.obj: bufpool.h conf.h disk.h dskbcpy.c kernel.h mark.h
+
+dskenq.obj: conf.h disk.h dskenq.c kernel.h
+
+dskio.obj: dskio.asm
+
+dskqopt.obj: conf.h disk.h dskqopt.c kernel.h
+
+dsksync.obj: bufpool.h conf.h disk.h dsksync.c kernel.h mark.h proc.h
+
+dsnap.obj: conf.h disk.h dsnap.c kernel.h
+
+dsopen.obj: conf.h disk.h dsopen.c file.h kernel.h
+
+dsread.obj: bufpool.h conf.h disk.h dsread.c kernel.h mark.h proc.h
+
+dsseek.obj: bufpool.h conf.h disk.h dsseek.c kernel.h mark.h proc.h
+
+dswrite.obj: bufpool.h conf.h disk.h dswrite.c kernel.h mark.h proc.h
+
+eidi.obj: eidi.asm
+
+fprintf.obj: conf.h fprintf.c kernel.h
+
+freebuf.obj: bufpool.h conf.h freebuf.c kernel.h mark.h
+
+freemem.obj: conf.h freemem.c kernel.h mem.h
+
+getbuf.obj: bufpool.h conf.h getbuf.c kernel.h mark.h
+
+getc.obj: conf.h getc.c io.h kernel.h
+
+getdev.obj: conf.h getdev.c kernel.h
+
+getitem.obj: conf.h getitem.c kernel.h q.h
+
+getmem.obj: conf.h getmem.c kernel.h mem.h
+
+getpid.obj: conf.h getpid.c kernel.h proc.h
+
+getprio.obj: conf.h getprio.c kernel.h proc.h
+
+ibclear.obj: conf.h disk.h file.h ibclear.c kernel.h
+
+ibget.obj: bufpool.h conf.h disk.h file.h ibget.c kernel.h mark.h
+
+iblfree.obj: conf.h disk.h file.h iblfree.c io.h kernel.h
+
+ibnew.obj: conf.h disk.h file.h ibnew.c io.h kernel.h
+
+ibput.obj: bufpool.h conf.h disk.h file.h ibput.c io.h kernel.h mark.h
+
+init.obj: conf.h init.c io.h kernel.h
+
+initiali.obj: bios.h butler.h conf.h disk.h dos.h initiali.c io.h kbdio.h kernel.h mark.h mem.h mffile.h proc.h q.h sem.h tty.h
+
+insert.obj: conf.h insert.c kernel.h q.h
+
+insertd.obj: conf.h insertd.c kernel.h q.h
+
+intmap.obj: intmap.asm
+
+ioerr.obj: conf.h ioerr.c kernel.h
+
+ionull.obj: conf.h ionull.c kernel.h
+
+kbdio.obj: kbdio.asm
+
+kgetc.obj: conf.h kbdio.h kernel.h kgetc.c tty.h
+
+kill.obj: conf.h kernel.h kill.c mem.h proc.h sem.h
+
+kprintf.obj: conf.h io.h kernel.h kprintf.c tty.h vidio.h
+
+kputc.obj: conf.h kernel.h kputc.c tty.h vidio.h
+
+lfclose.obj: conf.h disk.h file.h kernel.h lfclose.c proc.h
+
+lfgetc.obj: conf.h disk.h file.h kernel.h lfgetc.c proc.h
+
+lfinit.obj: conf.h disk.h file.h kernel.h lfinit.c
+
+lfputc.obj: conf.h disk.h file.h kernel.h lfputc.c proc.h
+
+lfread.obj: conf.h disk.h file.h kernel.h lfread.c
+
+lfsdfree.obj: conf.h disk.h file.h kernel.h lfsdfree.c
+
+lfseek.obj: conf.h disk.h file.h kernel.h lfseek.c
+
+lfsetup.obj: conf.h disk.h file.h kernel.h lfsetup.c
+
+lfsflush.obj: conf.h disk.h file.h kernel.h lfsflush.c
+
+lfsnewd.obj: conf.h disk.h file.h kernel.h lfsnewd.c
+
+lfwrite.obj: conf.h kernel.h lfwrite.c
+
+lwattr.obj: conf.h kernel.h lwattr.c tty.h
+
+lwbord.obj: conf.h kernel.h lwbord.c tty.h
+
+lwclose.obj: conf.h kernel.h lwclose.c proc.h tty.h
+
+lwcntl.obj: conf.h kernel.h lwcntl.c proc.h tty.h
+
+lwgetc.obj: conf.h io.h kernel.h lwgetc.c proc.h tty.h
+
+lwinit.obj: bios.h conf.h io.h kernel.h lwinit.c tty.h
+
+lwoproc.obj: bios.h conf.h io.h kernel.h lwoproc.c tty.h
+
+lwputc.obj: conf.h kernel.h lwputc.c proc.h tty.h
+
+lwread.obj: conf.h io.h kernel.h lwread.c tty.h
+
+lwwrite.obj: conf.h io.h kernel.h lwwrite.c tty.h
+
+map.obj: conf.h dos.h io.h kernel.h map.c
+
+mark.obj: conf.h kernel.h mark.c mark.h
+
+mfalloc.obj: conf.h kernel.h mfalloc.c mffile.h
+
+mfclose.obj: conf.h kernel.h mfclose.c mffile.h proc.h
+
+mfdsrch.obj: conf.h kernel.h mfdsrch.c mffile.h
+
+mfgetc.obj: conf.h kernel.h mffile.h mfgetc.c proc.h
+
+mfinit.obj: conf.h kernel.h mffile.h mfinit.c
+
+mfputc.obj: conf.h kernel.h mffile.h mfputc.c proc.h
+
+mfread.obj: conf.h kernel.h mffile.h mfread.c
+
+mfseek.obj: conf.h kernel.h mffile.h mfseek.c
+
+mfsetup.obj: conf.h kernel.h mffile.h mfsetup.c
+
+mfsflush.obj: conf.h kernel.h mffile.h mfsflush.c
+
+mfwrite.obj: conf.h kernel.h mfwrite.c
+
+mkpool.obj: bufpool.h conf.h kernel.h mark.h mem.h mkpool.c
+
+mscntl.obj: conf.h kernel.h mffile.h mscntl.c
+
+msopen.obj: conf.h kernel.h mffile.h msopen.c
+
+newqueue.obj: conf.h kernel.h newqueue.c q.h
+
+open.obj: conf.h io.h kernel.h open.c
+
+panic.obj: bios.h conf.h dos.h io.h kernel.h panic.c proc.h tty.h
+
+pcount.obj: conf.h kernel.h mark.h pcount.c ports.h
+
+pcreate.obj: conf.h kernel.h mark.h pcreate.c ports.h
+
+pcscreen.obj: conf.h dos.h kernel.h pcscreen.c vidio.h window.h
+
+pdelete.obj: conf.h kernel.h mark.h pdelete.c ports.h
+
+pinit.obj: conf.h kernel.h mark.h mem.h pinit.c ports.h
+
+poolinit.obj: bufpool.h conf.h kernel.h mark.h poolinit.c
+
+preceive.obj: conf.h kernel.h mark.h ports.h preceive.c
+
+preset.obj: conf.h kernel.h mark.h ports.h preset.c
+
+printf.obj: conf.h kernel.h printf.c
+
+psend.obj: conf.h kernel.h mark.h ports.h psend.c
+
+psnap.obj: conf.h kernel.h proc.h psnap.c q.h
+
+ptclear.obj: conf.h kernel.h mark.h ports.h ptclear.c
+
+putc.obj: conf.h io.h kernel.h putc.c
+
+queue.obj: conf.h kernel.h q.h queue.c
+
+read.obj: conf.h io.h kernel.h read.c
+
+readcopy.obj: conf.h io.h kernel.h readcopy.c tty.h
+
+ready.obj: conf.h kernel.h proc.h q.h ready.c
+
+receive.obj: conf.h kernel.h proc.h receive.c
+
+recvclr.obj: conf.h kernel.h proc.h recvclr.c
+
+resched.obj: conf.h kernel.h proc.h q.h resched.c
+
+resume.obj: conf.h kernel.h proc.h resume.c
+
+scount.obj: conf.h kernel.h scount.c sem.h
+
+screate.obj: conf.h kernel.h proc.h q.h screate.c sem.h
+
+sdelete.obj: conf.h kernel.h proc.h q.h sdelete.c sem.h
+
+seek.obj: conf.h io.h kernel.h seek.c
+
+send.obj: conf.h kernel.h proc.h send.c
+
+sendf.obj: conf.h kernel.h proc.h sendf.c
+
+sendn.obj: conf.h kernel.h proc.h sendn.c
+
+signal.obj: conf.h kernel.h proc.h q.h sem.h signal.c
+
+signaln.obj: conf.h kernel.h proc.h q.h sem.h signaln.c
+
+sleep.obj: conf.h kernel.h sleep.c sleep.h
+
+sleept.obj: conf.h kernel.h proc.h q.h sleep.h sleept.c
+
+sreset.obj: conf.h kernel.h proc.h q.h sem.h sreset.c
+
+ssclock.obj: conf.h kernel.h q.h sleep.h ssclock.c
+
+stack.obj: stack.asm
+
+suspend.obj: conf.h kernel.h proc.h suspend.c
+
+tsnap.obj: conf.h kernel.h sem.h tsnap.c tty.h
+
+ttycntl.obj: conf.h io.h kernel.h tty.h ttycntl.c
+
+ttygetc.obj: conf.h io.h kernel.h tty.h ttygetc.c
+
+ttyiin.obj: conf.h kernel.h tty.h ttyiin.c
+
+ttyinit.obj: bios.h conf.h io.h kbdio.h kernel.h tty.h ttyinit.c
+
+ttyiproc.obj: bios.h butler.h conf.h io.h kbdio.h kernel.h tty.h ttyiproc.c
+
+ttyopen.obj: bios.h conf.h io.h kernel.h proc.h tty.h ttyopen.c
+
+ttyoproc.obj: conf.h io.h kernel.h tty.h ttyoproc.c vidio.h
+
+ttyputc.obj: conf.h io.h kernel.h tty.h ttyputc.c
+
+ttyread.obj: conf.h io.h kernel.h tty.h ttyread.c
+
+ttywrite.obj: conf.h io.h kernel.h tty.h ttywrite.c
+
+userret.obj: conf.h kernel.h userret.c
+
+vidio.obj: vidio.asm
+
+wait.obj: conf.h kernel.h proc.h q.h sem.h wait.c
+
+wakeup.obj: conf.h kernel.h proc.h q.h sleep.h wakeup.c
+
+wputcsr.obj: conf.h kernel.h tty.h wputcsr.c
+
+writcopy.obj: conf.h io.h kernel.h tty.h writcopy.c
+
+write.obj: conf.h io.h kernel.h write.c
+
+xdone.obj: conf.h disk.h io.h kernel.h proc.h tty.h xdone.c
+
+xeidi.obj: xeidi.asm
+

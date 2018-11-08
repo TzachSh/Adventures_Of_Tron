@@ -1,5 +1,5 @@
 # Adventures_Of_Tron
-an Adventues of Tron game project which I developed for a Real Time course in SW engineering studies.
+an Adventures of Tron game project that I developed in a Real Time course of SW engineering studies.
 
 XINU verion for the Adventures of Tron classic.
 
